@@ -13,7 +13,8 @@ llm_config_autogen = {
     "seed": 42,  # change the seed for different trials
     "temperature": 0,
     "config_list": [{"model": "llama3", 
-                     "base_url": "http://0.0.0.0:4000/v1", 
+                     # 这里需要用localhost，不然会502
+                     "base_url": "http://localhost:4000/v1", 
                      'api_key': 'ollama',
                      'price': [0, 0]
                      },
