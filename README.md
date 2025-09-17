@@ -81,7 +81,7 @@
     ```
 3. **初始化 GraphRAG，拷贝设置文件到根目录下:**
     ```pwsh
-    mkdir input input/markdown
+    mkdir input/markdown
     python -m graphrag.index --init  --root .
     cp ./utils/settings.yaml ./
     ```      
@@ -91,6 +91,7 @@
     cp ./utils/embedding.py .\autogen_venv\Lib\site-packages\graphrag\query\llm\oai\embedding.py 
     ```      
 5. **创建嵌入和知识图:**
+    向 input/markdown 路径下放入 markdown 文件作为知识库
     ```pwsh
     python -m graphrag.index --root .
     ```         
