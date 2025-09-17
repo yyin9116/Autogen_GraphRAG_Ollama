@@ -56,7 +56,7 @@
     ```
     git clone -b yin https://github.com/yyin9116/Autogen_GraphRAG_Ollama.git
     
-    cd autogen_graphRAG
+    cd Autogen_GraphRAG_Ollama
     ```
     在当前路径根目录创建虚拟环境
     ```
