@@ -52,7 +52,7 @@ async def on_chat_start():
         cl.user_session.set("Gen_type", response_type)
         cl.user_session.set("Community", community)
         cl.user_session.set("Search_type", local_search)
-
+  
         retriever = AssistantAgent(
             name="Retriever", 
             llm_config=llm_config_autogen, 
