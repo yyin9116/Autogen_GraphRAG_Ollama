@@ -1,112 +1,97 @@
-# GraphRAG + AutoGen + Ollama + Chainlit UI = Local Multi-Agent RAG Superbot  
+# GraphRAG + AutoGen + Ollama + Chainlit UI = 本地多代理 RAG Superbot
 
 ![Graphical Abstract](https://github.com/karthik-codex/autogen_graphRAG/blob/main/images/1721017707759.jpg?raw=true)
 
-This application integrates GraphRAG with AutoGen agents, powered by local LLMs from Ollama, for free and offline embedding and inference. Key highlights include:
- - **Agentic-RAG:** - Integrating GraphRAG's knowledge search method with an AutoGen agent via function calling.
- - **Offline LLM Support:** - Configuring GraphRAG (local & global search) to support local models from Ollama for inference
- and embedding.
- - **Non-OpenAI Function Calling:** - Extending AutoGen to support function calling with non-OpenAI LLMs from Ollama via Lite-LLM proxy
-server.
- - **Interactive UI:** - Deploying Chainlit UI to handle continuous conversations, multi-threading, and user input settings.
+此应用程序将 GraphRAG 与 AutoGen 代理集成，由来自 Ollama 的本地 LLMs 驱动，用于免费和离线嵌入和推理。主要亮点包括：
 
-![Main Interfacce](https://github.com/karthik-codex/autogen_graphRAG/blob/main/images/UI1.webp?raw=true)
-![Widget Settings](https://github.com/karthik-codex/autogen_graphRAG/blob/main/images/U2.webp?raw=true)
+* Agentic-RAG：- 通过函数调用将 GraphRAG 的知识搜索方法与 AutoGen 代理集成。
 
-## Useful Links 🔗
+* 离线 LLM 支持：- 配置 GraphRAG（本地和全局搜索）以支持来自 Ollama 的本地模型，用于推理和嵌入。
 
-- **Full Guide:** Microsoft's GraphRAG + AutoGen + Ollama + Chainlit = Fully Local & Free Multi-Agent RAG Superbot [Medium.com](https://medium.com/@karthik.codex/microsofts-graphrag-autogen-ollama-chainlit-fully-local-free-multi-agent-rag-superbot-61ad3759f06f) 📚
+* 非 OpenAI 函数调用：- 扩展 AutoGen 以支持通过 Lite-LLM 代理服务器从 Ollama 进行非 OpenAI LLMs 的函数调用。
 
-## 📦 Installation and Setup Linux
+* 交互式 UI：- 部署 Chainlit UI 来处理持续对话、多线程和用户输入设置
 
-Follow these steps to set up and run AutoGen GraphRAG Local with Ollama and Chainlit UI:
 
-1. **Install LLMs:**
 
-    Visit [Ollama's website](https://ollama.com/) for installation files.
+## 📦 在 Windows 上安装 
 
-    ```bash
+按照以下步骤在 Windows 上使用 Ollama 和 Chainlit UI 设置并本地运行 AutoGen GraphRAG :
+
+1. **安装 LLMs:**
+
+    [Ollama's website](https://ollama.com/) 先下载 Ollama App。
+
+    启动 App 后，先用任务管理器关掉 Ollama 的所有进程，因为 App 开着会占用我们的端口导致无法使用命令安装模型。
+
+    在命令行中使用 Ollama.exe 而不是 Ollama app.exe 来执行以下命令：
+    ```pwsh
+    # 先启动 Ollama
+    ollama serve
+    # 拉取模型，大概10个G，注意流量
     ollama pull mistral
     ollama pull nomic-embed-text
     ollama pull llama3
-    ollama serve
+    ```
+    如果输入 ollama 发现找不到， 或者修改了安装位置，需要根据安装 Ollama 时的提示，修改系统环境变量 Path 中对应  Ollama.exe 所在路径的值。
+    ```
+    Path: Ollama App 根目录
     ```
 
-2. **Create conda environment and install packages:**
-    ```bash
-   conda create -n RAG_agents python=3.12
-   conda activate RAG_agents
-   git clone https://github.com/karthik-codex/autogen_graphRAG.git
-   cd autogen_graphRAG
-   pip install -r requirements.txt
-    ```    
-3. **Initiate GraphRAG root folder:**
-    ```bash
-    mkdir -p ./input
-    python -m graphrag.index --init  --root .
-    mv ./utils/settings.yaml ./
-    ```      
-4. **Replace 'embedding.py' and 'openai_embeddings_llm.py' in the GraphRAG package folder using files from Utils folder:**
-    ```bash
-    sudo find / -name openai_embeddings_llm.py
-    sudo find / -name embedding.py
-    ```      
-5. **Create embeddings and knowledge graph:**
-    ```bash
-    python -m graphrag.index --root .
-    ```         
-6. **Start Lite-LLM proxy server:**
-    ```bash
-    litellm --model ollama_chat/llama3
-    ```    
-7. **Run app:**
-    ```bash
-    chainlit run appUI.py
-    ```                
-
-## 📦 Installation and Setup Windows
-
-Follow these steps to set up and run AutoGen GraphRAG Local with Ollama and Chainlit UI on Windows:
-
-1. **Install LLMs:**
-
-    Visit [Ollama's website](https://ollama.com/) for installation files.
-
-    ```pwsh
-    ollama pull mistral
-    ollama pull nomic-embed-text
-    ollama pull llama3
-    ollama serve
+2. **使用 uv 来管理依赖:**
+    安装 uv
     ```
-
-2. **Create conda environment and install packages:**
-    ```pwsh
-    git clone https://github.com/karthik-codex/autogen_graphRAG.git
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.7.4/install.ps1 | iex".ps
+    ```
+    写入环境变量
+    ```
+    $env:Path = "C:\Users\你的用户名\.local\bin;$env:Path"
+    ```
+    检查是否安装成功
+    ```
+    uv --version
+    ```
+    Clone 我创建的分支，切换到项目路径
+    ```
+    git clone -b yin https://github.com/yyin9116/autogen_graphRAG.git
+    
     cd autogen_graphRAG
-    python -m venv venv
-    ./venv/Scripts/activate
-    pip install -r requirements.txt
-    ```    
-3. **Initiate GraphRAG root folder:**
+    ```
+    在当前路径根目录创建虚拟环境
+    ```
+     uv venv .autogen_venv --python=3.12
+    ```
+    这段命令里 `.autogen_venv` 就是创建的虚拟环境名称，可以在当前文件夹里找到（被隐藏的文件夹名）
+
+    激活环境（记得每次切换新终端都要激活一次）
+    ```
+    .autogen_venv/Scripts/activate.ps1
+    ```
+    安装依赖
     ```pwsh
-    mkdir input
+    uv pip install -r requirements.txt
+    ```    
+3. **初始化 GraphRAG，拷贝设置文件到根目录下:**
+    ```pwsh
+    mkdir input input/markdown
     python -m graphrag.index --init  --root .
     cp ./utils/settings.yaml ./
     ```      
-4. **Replace 'embedding.py' and 'openai_embeddings_llm.py' in the GraphRAG package folder using files from Utils folder:**
+4. **用 Utils 文件夹下的两个同名文件替换 GraphRAG 库中的 'embedding.py' 和 'openai_embeddings_llm.py' :**
     ```pwsh
-    cp ./utils/openai_embeddings_llm.py .\venv\Lib\site-packages\graphrag\llm\openai\openai_embeddings_llm.py
-    cp ./utils/embedding.py .\venv\Lib\site-packages\graphrag\query\llm\oai\embedding.py 
+    cp ./utils/openai_embeddings_llm.py .\.autogen_venv\Lib\site-packages\graphrag\llm\openai\openai_embeddings_llm.py
+    cp ./utils/embedding.py .\.autogen_venv\Lib\site-packages\graphrag\query\llm\oai\embedding.py 
     ```      
-5. **Create embeddings and knowledge graph:**
+5. **创建嵌入和知识图:**
     ```pwsh
     python -m graphrag.index --root .
     ```         
-6. **Start Lite-LLM proxy server:**
+6. **启动 Lite-LLM 代理服务器:**
+    使用 llama3 来负责对话（发送请求到 4000 端口）
     ```pwsh
     litellm --model ollama_chat/llama3
     ```    
-7. **Run app:**
+7. **启动 app:**
     ```pwsh
     chainlit run appUI.py
     ```                
