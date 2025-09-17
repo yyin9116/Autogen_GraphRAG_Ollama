@@ -98,7 +98,7 @@ async def on_chat_start():
             @user_proxy.register_for_execution()
             @retriever.register_for_llm(description="检索内容用于代码生成和问题回答")
             async def query_graphRAG(
-                query: Annotated[str, '查询字符串，包含你想要从RAG搜索中获取的信息']
+                query: Annotated[str, '查询字符串 包含你想要从RAG搜索中获取的信息']
             ) -> str:
                 LOCAL_SEARCH = cl.user_session.get("Search_type")
                 RESPONSE_TYPE = cl.user_session.get("Gen_type")
