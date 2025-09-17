@@ -39,6 +39,7 @@
     ```
 
 2. **使用 uv 来管理依赖:**
+    
     安装 uv
     ```
     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.7.4/install.ps1 | iex".ps
