@@ -79,6 +79,7 @@
     ```
     uv pip install chainlit==2.0.0
     ```
+    此时可能之前的库版本又被更改了，建议再执行一遍`uv pip install -r requirements.txt`
 3. **初始化 GraphRAG，拷贝设置文件到根目录下:**
     ```pwsh
     mkdir input/markdown
