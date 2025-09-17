@@ -40,33 +40,33 @@
 
 2. **使用 uv 来管理依赖:**
     
-    安装 uv
-    ```
+    打开 powershell ，安装 uv
+    ```pwsh
     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.7.4/install.ps1 | iex"
     ```
     写入环境变量
-    ```
+    ```pwsh
     $env:Path = "C:\Users\你的用户名\.local\bin;$env:Path"
     ```
     检查是否安装成功
-    ```
+    ```pwsh
     uv --version
     ```
     Clone 我创建的分支，切换到项目路径
-    ```
+    ```pwsh
     git clone -b yin https://github.com/yyin9116/Autogen_GraphRAG_Ollama.git
     
     cd Autogen_GraphRAG_Ollama
     ```
     在当前路径根目录创建虚拟环境
+    ```pwsh
+     uv venv autogen_venv --python=3.12
     ```
-     uv venv .autogen_venv --python=3.12
-    ```
-    这段命令里 `.autogen_venv` 就是创建的虚拟环境名称，可以在当前文件夹里找到（被隐藏的文件夹名）
+    这段命令里 `autogen_venv` 就是创建的虚拟环境名称，可以在当前文件夹里找到
 
     激活环境（记得每次切换新终端都要激活一次）
-    ```
-    .autogen_venv/Scripts/activate.ps1
+    ```pwsh
+    autogen_venv/Scripts/activate.ps1
     ```
     安装依赖
     ```pwsh
@@ -80,8 +80,8 @@
     ```      
 4. **用 Utils 文件夹下的两个同名文件替换 GraphRAG 库中的 'embedding.py' 和 'openai_embeddings_llm.py' :**
     ```pwsh
-    cp ./utils/openai_embeddings_llm.py .\.autogen_venv\Lib\site-packages\graphrag\llm\openai\openai_embeddings_llm.py
-    cp ./utils/embedding.py .\.autogen_venv\Lib\site-packages\graphrag\query\llm\oai\embedding.py 
+    cp ./utils/openai_embeddings_llm.py .\autogen_venv\Lib\site-packages\graphrag\llm\openai\openai_embeddings_llm.py
+    cp ./utils/embedding.py .\autogen_venv\Lib\site-packages\graphrag\query\llm\oai\embedding.py 
     ```      
 5. **创建嵌入和知识图:**
     ```pwsh
@@ -95,4 +95,10 @@
 7. **启动 app:**
     ```pwsh
     chainlit run appUI.py
-    ```                
+    ```
+    如果在环境路径 Scripts 文件夹下找不到 Chainlit.exe，尝试手动重新装一下 chainlit
+    ```pwsh
+    uv pip install chainlit==2.0.0
+    ```
+8. **注意事项：**
+   1. 由于版本问题，utils 中的 pdf 转换脚本目前不可用
