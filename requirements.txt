@@ -3,6 +3,9 @@ ollama
 pyautogen[retrievechat]
 tiktoken
 chainlit
-graphrag
+graphrag==0.3.6
 marker-pdf
 torch
+openai==1.66.2
+pymupdf
+pymupdf4llm
