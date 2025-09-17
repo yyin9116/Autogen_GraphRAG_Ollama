@@ -42,7 +42,7 @@
     
     安装 uv
     ```
-    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.7.4/install.ps1 | iex".ps
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.7.4/install.ps1 | iex"
     ```
     写入环境变量
     ```
@@ -54,7 +54,7 @@
     ```
     Clone 我创建的分支，切换到项目路径
     ```
-    git clone -b yin https://github.com/yyin9116/autogen_graphRAG.git
+    git clone -b yin https://github.com/yyin9116/Autogen_GraphRAG_Ollama.git
     
     cd autogen_graphRAG
     ```
