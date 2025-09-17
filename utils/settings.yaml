@@ -7,7 +7,7 @@ llm:
   model: mistral
   model_supports_json: true # recommended if this is available for your model.
   # max_tokens: 4000
-  # request_timeout: 180.0
+  request_timeout: 1800.0
   api_base: http://localhost:11434/v1
   # api_version: 2024-02-15-preview
   # organization: <organization_id>
@@ -31,7 +31,7 @@ embeddings:
   llm:
     api_key: ${GRAPHRAG_API_KEY}
     type: openai_embedding # or azure_openai_embedding
-    model: nomic_embed_text #text-embedding-3-large  #mxbai-embed-large #
+    model: nomic-embed-text #text-embedding-3-large  #mxbai-embed-large #
     api_base: http://localhost:11434/api
     # api_version: 2024-02-15-preview
     # organization: <organization_id>
