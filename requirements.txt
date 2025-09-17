@@ -1,8 +1,8 @@
-litellm[proxy]
+
 ollama
 pyautogen[retrievechat]
 tiktoken
-chainlit==2.0.0
+
 graphrag==0.3.6
 marker-pdf
 torch

@@ -72,6 +72,13 @@
     ```pwsh
     uv pip install -r requirements.txt
     ```    
+    手动安装两个库，防止报错
+    ```
+    uv pip install litellm[proxy]
+    ```
+    ```
+    uv pip install chainlit==2.0.0
+    ```
 3. **初始化 GraphRAG，拷贝设置文件到根目录下:**
     ```pwsh
     mkdir input input/markdown
